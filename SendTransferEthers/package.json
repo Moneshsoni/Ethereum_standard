@@ -1,0 +1,14 @@
+{
+  "name": "sendtransferethers",
+  "version": "1.0.0",
+  "description": "This is token transfer and receive ethers js file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Monesh soni",
+  "license": "ISC",
+  "dependencies": {
+    "ethers": "^5.7.2"
+  }
+}
