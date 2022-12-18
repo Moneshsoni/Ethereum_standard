@@ -1,9 +1,11 @@
 pragma solidity 0.8.9;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-
+import "@openzeppelin/contracts/utils/Counters.sol";
 contract MosoToken is ERC721{
-    constructor() ERC721("MosoToken","moso"){}
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
     
+    constructor() ERC721("MosoToken","moso"){}
     function supportsInterface(bytes4 interfaceId) public view override returns(bool){
         // if(interfaceId == 0x80ac58cd){
         //     return true;
@@ -15,4 +17,6 @@ contract MosoToken is ERC721{
         
         return interfaceId == 0x80ac58cd || super.supportsInterface(interfaceId);
     }
+    
+    
 }
