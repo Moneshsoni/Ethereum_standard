@@ -42,7 +42,7 @@ contract Ballot_Vote { // Variables
     }
 
     modifier inState(State _state) {
-        require(state = _state);
+        require(state == _state);
         _;
     }
 
@@ -66,8 +66,29 @@ contract Ballot_Vote { // Variables
         state = State.Voting;
     }
 
-    function doVote(bool _choice)public inState(State.Voting) {
-        
+    function doVote(bool _choice)public inState(State.Voting) returns(bool voted) {
+        bool isFound = false;
+        if(bytes(voterRegister[msg.sender].voterName).length!=0 && 
+        voterRegister[msg.sender].voted == false )
+        {
+            voterRegister[msg.sender].voted = true;  
+            Vote memory v;
+            v.voterAddress = msg.sender;
+            v.choice = _choice;
+            if(_choice){
+                countResult++;
+            }
+            votes[totalVote] = v;
+            totalVoter++;
+            isFound = true;
+        }
+        return isFound;
+    }
+    
+    
+    function endVote() public inState(State.Voting) onlyOfficial {
+        state = State.Ended;
+        finalResult =  countResult;
     }
  
 }
