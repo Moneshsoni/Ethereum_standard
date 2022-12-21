@@ -1,6 +1,6 @@
 const hre = require("hardhat");
 
-async function main() {
+async function main(){
   const MosoToken = await hre.ethers.getContractFactory("MosoToken");
   const mosotoken = await MosoToken.deploy(1000000);
 
