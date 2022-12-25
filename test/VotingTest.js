@@ -38,7 +38,7 @@ describe("Voting Project TestCases", () => {
         it("Should check doVote", async () => {
             await voterproject.addVotter(add1.address,"Second Voter");
             console.log(">>",await voterproject.doVote(true));
-            
+  
         })
         
     });
