@@ -82,7 +82,7 @@ contract Ballot_Vote { // Variables
             totalVoter++;
             isFound = true;
         }
-        return isFound;
+        return isFound;     
     }
     
     
