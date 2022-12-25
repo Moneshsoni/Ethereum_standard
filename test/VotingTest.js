@@ -27,7 +27,19 @@ describe("Voting Project TestCases", () => {
             // console.log(">>",await voterproject.proposal());
             expect(await voterproject.proposal()).to.be.equals(proposal);
         });
-
+        
+        it("Should check addVotter", async () =>{
+            // console.log("addVoter",await voterproject.totalVoter());
+            await voterproject.addVotter(add1.address,"First Voter");
+            await voterproject.addVotter(add1.address,"Second Voter");
+            // console.log(">>>",await voterproject.totalVoter());
+        })
+        
+        it("Should check doVote", async () => {
+            await voterproject.addVotter(add1.address,"Second Voter");
+            console.log(">>",await voterproject.doVote(true));
+            
+        })
         
     });
 
