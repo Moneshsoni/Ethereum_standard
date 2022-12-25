@@ -1,20 +1,35 @@
-const { expect } = require('chai');
-const {hre, ethers} = require("hardhat");
-const { etherscan } = require('../hardhat.config');
-// Start test of Voting Project
-describe("Voter Machine Project",()=>{
-    before(async ()=>{
-        signers = await ethers.getSigner();
-        Lock = await hre.ethers.getContractFactory("Ballot_Vote");
-        lock = await Lock.deploy();
-        await lock.deployed();
-        console.log(">>>",lock.address);
-  
-    })
+const { expect } = require("chai");
+const { ethers } = require("hardhat");
+
+
+describe("Voting Project TestCases", () => {
+    let VoterProject;
+    let voterproject;
+    let owner;
+    let ballotOfficeName = "India Vote";
+    let proposal = "MP";
     
-    describe("Test Cases for Voting Project", ()=>{
-        it("Should check test",async () =>{
-            console.log("????",lock);
-        })
-    })
-})
+    
+
+    beforeEach(async () => {
+        [owner, add1, add2] = await ethers.getSigners();
+        VoterProject = await ethers.getContractFactory("Ballot_Vote");
+        voterproject = await VoterProject.deploy(ballotOfficeName,proposal);
+    });
+
+    describe("Write test Cases for ", () => {
+        it("Should check ballotOfficeName", async () => {   
+            // console.log(">>",await voterproject.ballotOfficeName());
+            expect(await voterproject.ballotOfficeName()).to.be.equals(ballotOfficeName);
+        });
+        
+        it("Should check proposal", async () => {   
+            // console.log(">>",await voterproject.proposal());
+            expect(await voterproject.proposal()).to.be.equals(proposal);
+        });
+
+        
+    });
+
+
+});
