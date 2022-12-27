@@ -8,13 +8,17 @@ describe("Voting Project TestCases", () => {
     let owner;
     let ballotOfficeName = "India Vote";
     let proposal = "MP";
-    
-    
+    let MyToken;
+    let mosotoken;
 
-    beforeEach(async () => {
+    before(async () => {
         [owner, add1, add2] = await ethers.getSigners();
         VoterProject = await ethers.getContractFactory("Ballot_Vote");
         voterproject = await VoterProject.deploy(ballotOfficeName,proposal);
+        
+        MyToken = await ethers.getContractFactory("MosoToken");
+        mosotoken = await MyToken.deploy();
+        console.log(">>?",mosotoken.address);
     });
 
     describe("Write test Cases for ", () => {
@@ -36,8 +40,9 @@ describe("Voting Project TestCases", () => {
         })
         
         it("Should check doVote", async () => {
-            await voterproject.addVotter(add1.address,"Second Voter");
-            console.log(">>",await voterproject.doVote(true));
+            // await voterproject.addVotter(add1.address,"Second Voter");
+            // console.log(">>",voterproject);
+            console.log("Nothing");
   
         })
         
